@@ -1,4 +1,5 @@
-import Post from './post.js'
+import PostService from './PostService.js'
+// работа с запросами
 
 class PostController {
 
@@ -6,56 +7,56 @@ class PostController {
         try {
             const { param1, param2 } = req.body
             const { id } = req.params
+            // файл из формы
+            const { file } = req.files
             
-            const post = {} // database
+            const post = await PostService.create({ options });
             res.json(post)
     
         } catch (e) {
-            res.status(500).json(e)
+            res.status(500).json(e || e.message)
         }
     }
 
     async getAll(req, res) {
         try {
-
-            const post = {} // database
+            const post = await PostService.getAll({ options });
             res.json(post)
 
         } catch (e) {
-            res.status(500).json(e)
+            res.status(500).json(e || e.message)
         }
     }
 
     async getOne(req, res) {
         try {
-
-            const post = {} // database
+            const post = await PostService.getOne({ options });
             res.json(post)
 
         } catch (e) {
-            res.status(500).json(e)
+            res.status(500).json(e || e.message)
         }
     }
 
     async update(req, res) {
         try {
 
-            const post = {} // database
+            const post = await PostService.update({ options });
             res.json(post)
 
         } catch (e) {
-            res.status(500).json(e)
+            res.status(500).json(e || e.message)
         }
     }
 
     async delete(req, res) {
         try {
 
-            const post = {} // database
+            const post = await PostService.delete({ options });
             res.json(post)
 
         } catch (e) {
-            res.status(500).json(e)
+            res.status(500).json(e || e.message)
         }
     }
 
